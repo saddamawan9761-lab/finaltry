@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0A0A"/>
+      <stop offset="0.6" stop-color="#1a0005"/>
+      <stop offset="1" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C8102E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#C8102E" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <path d="M720 0h480v630H360z" fill="url(#accent)"/>
+  <g opacity="0.09">
+    <path d="M0 620L620 0h18L18 620z" fill="#C8102E"/>
+    <path d="M70 630L700 0h18L88 630z" fill="#C8102E"/>
+    <path d="M140 630L770 0h18L158 630z" fill="#C8102E"/>
+    <path d="M210 630L840 0h18L228 630z" fill="#C8102E"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="250" font-size="96" font-weight="800" fill="#C8102E">3M</text>
+    <text x="240" y="250" font-size="78" font-weight="700" fill="#F5F0E8" letter-spacing="3">OURCAR</text>
+    <text x="90" y="330" font-size="44" font-weight="600" fill="#F5F0E8">Official 3M Authorized Dealer</text>
+    <text x="90" y="392" font-size="28" font-weight="400" fill="#BDB7AE">Dubai · Abu Dhabi · Tint in 55 Minutes</text>
+  </g>
+</svg>

@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── DARK MODE (default) ─────────────────────────────────────────────────── */
+:root,
+html.dark {
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-barlow: 'Barlow', sans-serif;
+  --font-barlow-condensed: 'Barlow Condensed', sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
+
+  --red: #C8102E;
+  --red-dark: #A00D24;
+
+  --bg-page:   #0A0A0A;
+  --bg-mid:    #141414;
+  --bg-card:   #1A1A1A;
+  --bg-input:  #1A1A1A;
+  --border:    #2A2A2A;
+  --text-main: #F5F0E8;
+  --text-muted:#888888;
+  --scrollbar-track: #0A0A0A;
+  --nav-bg:    rgba(10,10,10,0.95);
+  --footer-bg: #050505;
+}
+
+/* ── LIGHT MODE ──────────────────────────────────────────────────────────── */
+html.light {
+  --bg-page:   #F5F1EB;
+  --bg-mid:    #EDEAE4;
+  --bg-card:   #FFFFFF;
+  --bg-input:  #FFFFFF;
+  --border:    #D8D4CC;
+  --text-main: #0A0A0A;
+  --text-muted:#666666;
+  --scrollbar-track: #F5F1EB;
+  --nav-bg:    rgba(245,241,235,0.95);
+  --footer-bg: #E8E4DE;
+}
+
+/* ── BASE ────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-barlow);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Rounded media */
+img,
+video {
+  border-radius: 5%;
+}
+
+/* Match common media wrappers so corners don't show through */
+:where(.border.overflow-hidden, .overflow-hidden.border) {
+  border-radius: 5%;
+}
+
+/* Mobile ergonomics */
+button, a {
+  -webkit-tap-highlight-color: rgba(200,16,46,0.18);
+  touch-action: manipulation;
+}
+
+/* Visible keyboard focus (mobile + desktop accessibility) */
+:where(a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* Arabic font when RTL */
+html[dir='rtl'] body {
+  font-family: var(--font-arabic);
+}
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4 {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  font-weight: 900;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-bebas);
+  letter-spacing: 0.05em;
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+/* ── SELECTION ───────────────────────────────────────────────────────────── */
+::selection { background: var(--red); color: white; }
+
+/* ── TRANSITION ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+/* Don't transition transforms/opacity (breaks animations) */
+.no-transition, svg, img, video {
+  transition: none !important;
+}
+
+/* Respect reduced-motion (important for mobile users) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ── UTILITY CLASSES ─────────────────────────────────────────────────────── */
+.font-heading    { font-family: var(--font-bebas); }
+.font-condensed  { font-family: var(--font-barlow-condensed); }
+.font-arabic     { font-family: var(--font-arabic); }
+.text-red        { color: var(--red); }
+.bg-page         { background: var(--bg-page); }
+.bg-mid          { background: var(--bg-mid); }
+.bg-card-themed  { background: var(--bg-card); }
+.border-themed   { border-color: var(--border); }
+.text-main       { color: var(--text-main); }
+.text-muted      { color: var(--text-muted); }
+
+/* ── THEME-AWARE COMPONENT OVERRIDES ────────────────────────────────────── */
+.themed-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+.themed-input {
+  background: var(--bg-input);
+  border-color: var(--border);
+  color: var(--text-main);
+}
+.themed-input:focus {
+  border-color: var(--red);
+  outline: none;
+}
+.themed-nav {
+  background: var(--nav-bg);
+  border-color: var(--border);
+}

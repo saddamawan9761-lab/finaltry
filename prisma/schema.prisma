@@ -1,0 +1,79 @@
+// prisma/schema.prisma
+// SQLite for local dev — change provider to "postgresql" + set DATABASE_URL for production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// ─── LEADS (General contact enquiries) ───────────────────────────────────────
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name     String
+  phone    String
+  email    String?
+  message  String?
+  service  String?
+  location String?
+  source   String?  @default("website") // website, whatsapp, walk-in
+
+  // Status: NEW | CONTACTED | QUALIFIED | CONVERTED | CLOSED
+  status   String @default("NEW")
+
+  @@map("leads")
+}
+
+// ─── BOOKINGS ─────────────────────────────────────────────────────────────────
+model Booking {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name         String
+  phone        String
+  email        String?
+  service      String
+  location     String
+  preferredDate DateTime?
+  preferredTime String?
+  carMake      String?
+  carModel     String?
+  carYear      String?
+  notes        String?
+
+  // Status: PENDING | CONFIRMED | IN_PROGRESS | COMPLETED | CANCELLED
+  status        String    @default("PENDING")
+
+  @@map("bookings")
+}
+
+// ─── QUOTE REQUESTS ───────────────────────────────────────────────────────────
+model Quote {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  phone       String
+  email       String?
+  service     String
+  location    String?
+  carMake     String?
+  carModel    String?
+  carYear     String?
+  description String?
+
+  // Status: PENDING | SENT | ACCEPTED | REJECTED
+  status      String  @default("PENDING")
+
+  @@map("quotes")
+}
+
+

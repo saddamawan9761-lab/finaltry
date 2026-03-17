@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+node_modules
+.next
+prisma/dev.db
+*.db
+.env
+=======
+node_modules
+.next
+prisma/dev.db
+*.db
+.env
+>>>>>>> 25543e88f3948bab0dab88d8e568019785541b2e
+.env.local
