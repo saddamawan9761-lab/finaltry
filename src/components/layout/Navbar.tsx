@@ -89,11 +89,11 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
 
           {/* ── Logo: bold red 3M + OURCAR image ── */}
-          <Link href="/" className="flex items-center gap-1.5 flex-shrink-0 group" aria-label="3M OURCAR — Home">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group" aria-label="3M OURCAR — Home">
             <span style={{
               color: 'var(--red)',
               fontWeight: 800,
-              fontSize: '1.65rem',
+              fontSize: '1.9rem',
               fontFamily: 'var(--font-bebas)',
               letterSpacing: '0.05em',
               lineHeight: 1,
@@ -104,9 +104,9 @@ export function Navbar() {
             <Image
               src="/images/log-ourcar.png"
               alt="OURCAR"
-              width={110}
-              height={30}
-              className="h-7 w-auto object-contain transition-opacity group-hover:opacity-80"
+              width={140}
+              height={40}
+              className="h-9 w-auto object-contain transition-opacity group-hover:opacity-80"
               priority
               onError={(e) => {
                 // Graceful fallback if logo image not yet uploaded

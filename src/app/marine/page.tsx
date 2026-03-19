@@ -18,7 +18,10 @@ export default function MarinePage() {
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'repeating-linear-gradient(45deg,#C8102E 0,#C8102E 1px,transparent 0,transparent 30px)', backgroundSize: '30px 30px' }} />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <p className="text-xs font-semibold tracking-[3px] uppercase mb-3" style={{ color: 'var(--red)' }}>On The Water</p>
-          <h1 className="font-heading leading-none tracking-wide" style={{ fontSize: 'clamp(3rem,8vw,6rem)', color: 'var(--text-main)' }}>
+          <h1
+            className="font-heading leading-none tracking-wide"
+            style={{ fontSize: 'clamp(3rem,8vw,6rem)', color: 'white', textShadow: '0 2px 18px rgba(0,0,0,0.55)' }}
+          >
             MARINE<br /><span style={{ color: 'var(--red)' }}>TINTING</span>
           </h1>
         </div>
@@ -26,8 +29,8 @@ export default function MarinePage() {
 
       <section className="py-24 px-6" style={{ background: 'linear-gradient(135deg,#040d1a,var(--bg-page))' }}>
         <div className="max-w-7xl mx-auto">
-          <p className="text-sm font-light max-w-xl mb-16 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-            Protect your yacht, speedboat or vessel from harsh UV rays, heat and glare with 3M marine-grade window films — designed for the demanding UAE marine environment.
+          <p className="text-sm font-light max-w-xl mb-16 leading-relaxed on-dark-soft">
+            Protect your yacht, speedboat or vessel from harsh UV rays, heat and glare with <span style={{ color: 'var(--red)', fontWeight: 700 }}>3M</span> marine-grade window films — designed for the demanding UAE marine environment.
           </p>
           <div className="grid md:grid-cols-2 gap-8">
             {MARINE_SERVICES.map((s) => (

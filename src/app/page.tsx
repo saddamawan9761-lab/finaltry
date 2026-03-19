@@ -6,6 +6,7 @@ import { ShopWhileTint } from '@/components/sections/ShopWhileTint'
 import { FiftyFiveMinutes } from '@/components/sections/FiftyFiveMinutes'
 import { CertificationsSection } from '@/components/sections/CertificationsSection'
 import { ServicesPreview } from '@/components/sections/ServicesPreview'
+import { HomeServiceShowcase } from '@/components/sections/HomeServiceShowcase'
 import { ResidentialPreview } from '@/components/sections/ResidentialPreview'
 import { MarinePreview } from '@/components/sections/MarinePreview'
 import { LocationsSection } from '@/components/sections/LocationsSection'
@@ -26,6 +27,7 @@ export default function HomePage() {
       <ShopWhileTint />
       <FiftyFiveMinutes />
       <CertificationsSection />
+      <HomeServiceShowcase />
       <ServicesPreview />
       <ResidentialPreview />
       <MarinePreview />

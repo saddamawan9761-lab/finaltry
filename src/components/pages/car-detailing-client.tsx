@@ -448,14 +448,36 @@ export function CarDetailingClient() {
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--red)' }} />
                 <span className="text-xs font-semibold tracking-[2px] uppercase" style={{ color: 'var(--red)' }}>{c.hero.label}</span>
               </div>
-              <h1 className="font-heading leading-none tracking-wide mb-4" style={{ fontSize: 'clamp(2.8rem,6vw,5.5rem)', color: 'var(--text-main)' }}>
+              <h1
+                className="font-heading leading-none tracking-wide mb-4"
+                style={{
+                  fontSize: 'clamp(2.8rem,6vw,5.5rem)',
+                  color: 'white',
+                  textShadow: '0 2px 18px rgba(0,0,0,0.55)',
+                }}
+              >
                 {c.hero.title1}<br />
                 <span style={{ color: 'var(--red)' }}>{c.hero.title2}</span><br />
                 {c.hero.title3}
               </h1>
-              <p className="font-heading text-xl mb-4 tracking-wide" style={{ color: 'var(--text-muted)' }}>{c.hero.subtitle}</p>
-              <p className="text-sm font-light leading-relaxed mb-4 max-w-lg" style={{ color: 'var(--text-muted)' }}>{c.hero.desc}</p>
-              <p className="text-xs font-light italic mb-8" style={{ color: 'var(--text-muted)' }}>{c.hero.searches}</p>
+              <p
+                className="font-heading text-xl mb-4 tracking-wide"
+                style={{ color: 'rgba(255,255,255,0.88)', textShadow: '0 2px 16px rgba(0,0,0,0.5)' }}
+              >
+                {c.hero.subtitle}
+              </p>
+              <p
+                className="text-sm font-light leading-relaxed mb-4 max-w-lg"
+                style={{ color: 'rgba(255,255,255,0.82)', textShadow: '0 2px 14px rgba(0,0,0,0.45)' }}
+              >
+                {c.hero.desc}
+              </p>
+              <p
+                className="text-xs font-light italic mb-8"
+                style={{ color: 'rgba(255,255,255,0.78)', textShadow: '0 2px 12px rgba(0,0,0,0.45)' }}
+              >
+                {c.hero.searches}
+              </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="text-xs font-semibold tracking-widest uppercase px-7 py-4 transition-colors"
                   style={{ background: 'var(--red)', color: 'white' }}>{c.hero.cta1}</Link>

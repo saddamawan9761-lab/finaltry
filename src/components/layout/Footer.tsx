@@ -45,11 +45,11 @@ export function Footer() {
             {/* ── Brand ── */}
             <div>
               {/* Logo — same treatment as Navbar */}
-              <Link href="/" className="flex items-center gap-1.5 mb-4 group w-fit">
+              <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
                 <span style={{
                   color: 'var(--red)',
                   fontWeight: 800,
-                  fontSize: '1.4rem',
+                  fontSize: '1.7rem',
                   fontFamily: 'var(--font-bebas)',
                   letterSpacing: '0.05em',
                   lineHeight: 1,
@@ -59,9 +59,9 @@ export function Footer() {
                 <Image
                   src="/images/log-ourcar.png"
                   alt="OURCAR"
-                  width={90}
-                  height={24}
-                  className="h-6 w-auto object-contain transition-opacity group-hover:opacity-80"
+                  width={130}
+                  height={32}
+                  className="h-8 w-auto object-contain transition-opacity group-hover:opacity-80"
                   onError={(e) => {
                     const img = e.currentTarget as HTMLImageElement
                     img.style.display = 'none'

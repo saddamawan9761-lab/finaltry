@@ -34,7 +34,10 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'repeating-linear-gradient(45deg,#C8102E 0,#C8102E 1px,transparent 0,transparent 30px)', backgroundSize: '30px 30px' }} />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <p className="text-xs font-semibold tracking-[3px] uppercase mb-3" style={{ color: 'var(--red)' }}>Automotive Services</p>
-          <h1 className="font-heading leading-none tracking-wide" style={{ fontSize: 'clamp(3rem,8vw,6rem)', color: 'var(--text-main)' }}>
+          <h1
+            className="font-heading leading-none tracking-wide"
+            style={{ fontSize: 'clamp(3rem,8vw,6rem)', color: 'white', textShadow: '0 2px 18px rgba(0,0,0,0.55)' }}
+          >
             {service.title}
           </h1>
         </div>

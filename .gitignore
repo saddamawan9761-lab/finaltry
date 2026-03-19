@@ -3,4 +3,4 @@ node_modules
 prisma/dev.db
 *.db
 .env
-.env.local
+.env.localpublic/videos/home-services-portrait.mp4

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
+import { MediaCarousel } from '@/components/ui/MediaCarousel'
 
 const content = {
   en: {
@@ -441,14 +442,36 @@ export function PPFClient() {
                 <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--red)' }} />
                 <span className="text-xs font-semibold tracking-[2px] uppercase" style={{ color: 'var(--red)' }}>{c.hero.label}</span>
               </div>
-              <h1 className="font-heading leading-none tracking-wide mb-4" style={{ fontSize: 'clamp(2.5rem,5.5vw,5rem)', color: 'var(--text-main)' }}>
+              <h1
+                className="font-heading leading-none tracking-wide mb-4"
+                style={{
+                  fontSize: 'clamp(2.5rem,5.5vw,5rem)',
+                  color: 'white',
+                  textShadow: '0 2px 18px rgba(0,0,0,0.55)',
+                }}
+              >
                 {c.hero.title1}<br />
                 <span style={{ color: 'var(--red)' }}>{c.hero.title2}</span><br />
                 {c.hero.title3}
               </h1>
-              <p className="font-heading text-xl mb-4 tracking-wide" style={{ color: 'var(--text-muted)' }}>{c.hero.subtitle}</p>
-              <p className="text-sm font-light leading-relaxed mb-4 max-w-lg" style={{ color: 'var(--text-muted)' }}>{c.hero.desc}</p>
-              <p className="text-xs font-medium tracking-wide mb-8 italic" style={{ color: 'var(--text-muted)' }}>{c.hero.cars}</p>
+              <p
+                className="font-heading text-xl mb-4 tracking-wide"
+                style={{ color: 'rgba(255,255,255,0.88)', textShadow: '0 2px 16px rgba(0,0,0,0.5)' }}
+              >
+                {c.hero.subtitle}
+              </p>
+              <p
+                className="text-sm font-light leading-relaxed mb-4 max-w-lg"
+                style={{ color: 'rgba(255,255,255,0.82)', textShadow: '0 2px 14px rgba(0,0,0,0.45)' }}
+              >
+                {c.hero.desc}
+              </p>
+              <p
+                className="text-xs font-medium tracking-wide mb-8 italic"
+                style={{ color: 'rgba(255,255,255,0.78)', textShadow: '0 2px 12px rgba(0,0,0,0.45)' }}
+              >
+                {c.hero.cars}
+              </p>
               <div className="flex flex-wrap gap-4">
                 <WAButton label={c.hero.cta1} />
                 <Link href="/contact" className="text-xs font-semibold tracking-widest uppercase px-7 py-4 border transition-colors"
@@ -478,15 +501,20 @@ export function PPFClient() {
       {/* ── IMAGE GALLERY — first 6 images ───────────────────────────────── */}
       <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <CoverImg src="/images/ppf/ppf-1.jpg" alt="3M PPF installation UAE luxury car" />
-            <CoverImg src="/images/ppf/ppf-2.jpg" alt="3M Scotchgard PPF Dubai" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[3, 4, 5, 6].map(i => (
-              <CoverImg key={i} src={`/images/ppf/ppf-${i}.jpg`} alt={`3M PPF UAE ${i}`} />
-            ))}
-          </div>
+          <MediaCarousel
+            items={[1, 2, 3, 4, 5, 6].map((i) => ({
+              src: `/images/ppf/ppf-${i}.jpg`,
+              alt: i === 1
+                ? '3M PPF installation UAE luxury car'
+                : i === 2
+                  ? '3M Scotchgard PPF Dubai'
+                  : `3M PPF UAE ${i}`,
+            }))}
+            aspectRatio="16/9"
+            autoPlay
+            intervalMs={2400}
+            showThumbnails
+          />
         </div>
       </section>
 
@@ -540,10 +568,16 @@ export function PPFClient() {
 
       {/* ── IMAGE GALLERY — images 7-10 ───────────────────────────────────── */}
       <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[7, 8, 9, 10].map(i => (
-            <CoverImg key={i} src={`/images/ppf/ppf-${i}.jpg`} alt={`3M PPF UAE luxury car ${i}`} />
-          ))}
+        <div className="max-w-7xl mx-auto">
+          <MediaCarousel
+            items={[7, 8, 9, 10].map((i) => ({
+              src: `/images/ppf/ppf-${i}.jpg`,
+              alt: `3M PPF UAE luxury car ${i}`,
+            }))}
+            aspectRatio="16/9"
+            autoPlay
+            intervalMs={2200}
+          />
         </div>
       </section>
 
@@ -673,9 +707,16 @@ export function PPFClient() {
 
       {/* ── LAST 2 IMAGES ─────────────────────────────────────────────────── */}
       <section className="py-4 px-6" style={{ background: 'var(--bg-mid)' }}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-4">
-          <CoverImg src="/images/ppf/ppf-12.jpg" alt="3M PPF mall installation Dubai" />
-          <CoverImg src="/images/ppf/ppf-13.jpg" alt="3M PPF luxury car UAE" />
+        <div className="max-w-7xl mx-auto">
+          <MediaCarousel
+            items={[
+              { src: '/images/ppf/ppf-12.jpg', alt: '3M PPF mall installation Dubai' },
+              { src: '/images/ppf/ppf-13.jpg', alt: '3M PPF luxury car UAE' },
+            ]}
+            aspectRatio="16/9"
+            autoPlay
+            intervalMs={2600}
+          />
         </div>
       </section>
 
