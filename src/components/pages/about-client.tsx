@@ -304,16 +304,21 @@ export function AboutClient() {
               .partner-marquee { overflow: hidden; position: relative; width: 100%; }
               .partner-track {
                 display: flex; align-items: center; gap: 1rem; width: max-content;
-                animation: partnerScroll 26s linear infinite;
               }
+              .partner-track-ltr { animation: partnerScrollLtr 26s linear infinite; }
+              .partner-track-rtl { animation: partnerScrollRtl 26s linear infinite; }
               .partner-marquee:hover .partner-track { animation-play-state: paused; }
-              @keyframes partnerScroll {
+              @keyframes partnerScrollLtr {
                 from { transform: translateX(0); }
                 to { transform: translateX(-50%); }
               }
+              @keyframes partnerScrollRtl {
+                from { transform: translateX(-50%); }
+                to { transform: translateX(0); }
+              }
             `}</style>
             <div className="partner-marquee py-2">
-              <div className="partner-track">
+              <div className={`partner-track ${isRTL ? 'partner-track-rtl' : 'partner-track-ltr'}`}>
                 {[...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, idx) => (
                   <div
                     key={`${logo}-${idx}`}
