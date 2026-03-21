@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
+import { SplitMediaSection } from '@/components/ui/SplitMediaSection'
 
 const content = {
   en: {
@@ -447,19 +448,16 @@ export function CeramicCoatingClient() {
         </div>
       </section>
 
-      {/* ── 4 CERAMIC IMAGES ──────────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <CoverImg src="/images/ceramic/ceramic-1.jpg" alt="UltraShield Pro ceramic coating UAE luxury car" />
-            <CoverImg src="/images/ceramic/ceramic-2.jpg" alt="Ceramic coating application Dubai" />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <CoverImg src="/images/ceramic/ceramic-3.jpg" alt="Nano ceramic coating UAE" />
-            <CoverImg src="/images/ceramic/ceramic-4.jpg" alt="Ceramic coating gloss Dubai" />
-          </div>
-        </div>
-      </section>
+      <SplitMediaSection
+        label={isAr ? 'معرض السيراميك' : 'Ceramic Gallery'}
+        title={isAr ? 'نتائج حقيقية\nبلمعان احترافي' : 'REAL CERAMIC\nFINISH RESULTS'}
+        description={isAr ? 'عرض بصري يوضح جودة التطبيق ولمعان UltraShield Pro على مختلف فئات السيارات.' : 'A visual showcase of real UltraShield Pro applications with high-gloss professional finish.'}
+        mediaItems={[1, 2, 3, 4].map((i) => ({
+          src: `/images/ceramic/ceramic-${i}.jpg`,
+          alt: `Ceramic coating UAE ${i}`,
+        }))}
+        autoPlayMs={2200}
+      />
 
       {/* ── TRANSFORM SECTION ─────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -513,10 +511,22 @@ export function CeramicCoatingClient() {
         </div>
       </section>
 
-      {/* ── FULL WIDTH LANDSCAPE VIDEO ────────────────────────────────────── */}
-      <div className="w-full">
-        <LandscapeVideo src="/videos/ceramic-process.mp4" />
-      </div>
+      {/* ── LANDSCAPE VIDEO (contained cinematic card) ───────────────────── */}
+      <section className="py-16 px-6" style={{ background: 'var(--bg-page)' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-4">
+            <p className="text-[10px] font-bold tracking-[3px] uppercase" style={{ color: 'var(--red)' }}>
+              {isAr ? 'فيديو العملية' : 'Process Video'}
+            </p>
+          </div>
+          <div className="border overflow-hidden" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
+            <LandscapeVideo src="/videos/ceramic-process.mp4" />
+          </div>
+          <p className="text-xs font-light mt-3" style={{ color: 'var(--text-muted)' }}>
+            {isAr ? 'عرض سريع لمراحل التطبيق الاحترافي.' : 'A quick look at our professional application workflow.'}
+          </p>
+        </div>
+      </section>
 
       {/* ── SERVICES ──────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -607,7 +617,7 @@ export function CeramicCoatingClient() {
         </div>
       </section>
 
-      {/* ── DOORSTEP SERVICE + 3 IMAGES ───────────────────────────────────── */}
+      {/* ── DOORSTEP SERVICE ──────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-page)' }}>
         <div className="max-w-7xl mx-auto">
           <p className="text-xs font-semibold tracking-[3px] uppercase mb-3" style={{ color: 'var(--red)' }}>{c.doorstep.label}</p>
@@ -627,13 +637,16 @@ export function CeramicCoatingClient() {
               </div>
               <WAButton label={c.doorstep.cta} />
             </div>
-            {/* 3 doorstep images */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2">
+            <div>
+              <h3 className="font-heading leading-none tracking-wide mb-3" style={{ fontSize: 'clamp(1.6rem,3vw,2.3rem)', color: 'var(--text-main)' }}>
+                {isAr ? 'خدمة منزلية بنفس الجودة' : 'DOORSTEP SERVICE,\nSAME PREMIUM QUALITY'}
+              </h3>
+              <p className="text-sm font-light leading-relaxed mb-5" style={{ color: 'var(--text-muted)' }}>
+                {isAr ? 'تركيب احترافي على باب منزلك مع نفس الأدوات والمستوى المستخدم في الاستوديو.' : 'Professional doorstep ceramic application with the same tools and standards used in our studio.'}
+              </p>
+              <div className="border" style={{ borderColor: 'var(--border)' }}>
                 <CoverImg src="/images/ceramic/ceramic-doorstep-1.jpg" alt="Doorstep ceramic coating service Dubai" />
               </div>
-              <CoverImg src="/images/ceramic/ceramic-doorstep-2.jpg" alt="Mobile ceramic coating UAE villa" ratio="4/3" />
-              <CoverImg src="/images/ceramic/ceramic-doorstep-3.jpg" alt="Professional ceramic coating at home Dubai" ratio="4/3" />
             </div>
           </div>
         </div>

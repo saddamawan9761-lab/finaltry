@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
+import { SplitMediaSection } from '@/components/ui/SplitMediaSection'
 
 const content = {
   en: {
@@ -490,13 +491,16 @@ export function CarDetailingClient() {
         </div>
       </section>
 
-      {/* ── 2 IMAGES STRIP ────────────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-4">
-          <CoverImg src="/images/detailing/detailing-2.jpg" alt="Interior steam cleaning car Dubai" />
-          <CoverImg src="/images/detailing/detailing-3.jpg" alt="Car detailing steam sanitization UAE" />
-        </div>
-      </section>
+      <SplitMediaSection
+        label={isAr ? 'معرض التفصيل' : 'Detailing Gallery'}
+        title={isAr ? 'تنظيف عميق\nنتائج واضحة' : 'DEEP CLEANING,\nVISIBLE RESULTS'}
+        description={isAr ? 'صور حقيقية توضح الفرق قبل وبعد التفصيل والتنظيف بالبخار.' : 'Real detailing images showing the difference in interior hygiene and final finish quality.'}
+        mediaItems={[
+          { src: '/images/detailing/detailing-2.jpg', alt: 'Interior steam cleaning car Dubai' },
+          { src: '/images/detailing/detailing-3.jpg', alt: 'Car detailing steam sanitization UAE' },
+        ]}
+        autoPlayMs={2200}
+      />
 
       {/* ── INTRO ─────────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -587,10 +591,12 @@ export function CarDetailingClient() {
         </div>
       </section>
 
-      {/* ── IMAGE 4 FULL WIDTH ────────────────────────────────────────────── */}
-      <div className="w-full">
-        <CoverImg src="/images/detailing/detailing-4.jpg" alt="Professional car detailing Dubai before after" ratio="21/9" />
-      </div>
+      <SplitMediaSection
+        title={isAr ? 'نتيجة نهائية بمظهر\nصالة عرض' : 'SHOWROOM-LEVEL\nFINAL FINISH'}
+        description={isAr ? 'التشطيب النهائي بعد اكتمال مراحل التفصيل الداخلي والخارجي.' : 'Final visual finish after full interior and exterior detailing process.'}
+        singleImage={{ src: '/images/detailing/detailing-4.jpg', alt: 'Professional car detailing Dubai before after' }}
+        reverse
+      />
 
       {/* ── PACKAGES ──────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-page)' }}>
@@ -687,12 +693,11 @@ export function CarDetailingClient() {
         </div>
       </section>
 
-      {/* ── IMAGE 5 ───────────────────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-mid)' }}>
-        <div className="max-w-7xl mx-auto">
-          <CoverImg src="/images/detailing/detailing-5.jpg" alt="Car detailing mall Dubai showroom finish" />
-        </div>
-      </section>
+      <SplitMediaSection
+        title={isAr ? 'تفصيل احترافي في\nمواقع المولات' : 'MALL-BASED\nPROFESSIONAL DETAILING'}
+        description={isAr ? 'خدمة احترافية أثناء تسوقك، بنفس الجودة والدقة.' : 'Professional detailing while you shop, with premium consistency and quality control.'}
+        singleImage={{ src: '/images/detailing/detailing-5.jpg', alt: 'Car detailing mall Dubai showroom finish' }}
+      />
 
       {/* ── MOBILE SERVICE ────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -780,12 +785,12 @@ export function CarDetailingClient() {
         </div>
       </section>
 
-      {/* ── IMAGE 6 BEFORE RELATED ────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-mid)' }}>
-        <div className="max-w-7xl mx-auto">
-          <CoverImg src="/images/detailing/detailing-6.jpg" alt="Car detailing result showroom finish UAE" ratio="21/9" />
-        </div>
-      </section>
+      <SplitMediaSection
+        title={isAr ? 'النتيجة النهائية\nقبل الحجز' : 'FINAL RESULT\nBEFORE YOU BOOK'}
+        description={isAr ? 'لقطة أخيرة من نتائجنا لتوضيح مستوى النظافة واللمعان الذي نقدمه.' : 'One final showcase frame that reflects the level of cleanliness and finish you can expect.'}
+        singleImage={{ src: '/images/detailing/detailing-6.jpg', alt: 'Car detailing result showroom finish UAE' }}
+        reverse
+      />
 
       {/* ── RELATED SERVICES ──────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>

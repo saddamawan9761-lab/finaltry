@@ -467,10 +467,22 @@ export function CarPolishingClient() {
         </div>
       </section>
 
-      {/* ── LANDSCAPE VIDEO — full width ──────────────────────────────────── */}
-      <div className="w-full">
-        <LandscapeVideo src="/videos/polishing-process.mp4" />
-      </div>
+      {/* ── LANDSCAPE VIDEO (contained cinematic card) ───────────────────── */}
+      <section className="py-16 px-6" style={{ background: 'var(--bg-page)' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-4">
+            <p className="text-[10px] font-bold tracking-[3px] uppercase" style={{ color: 'var(--red)' }}>
+              {isAr ? 'فيديو العملية' : 'Process Video'}
+            </p>
+          </div>
+          <div className="border overflow-hidden" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
+            <LandscapeVideo src="/videos/polishing-process.mp4" />
+          </div>
+          <p className="text-xs font-light mt-3" style={{ color: 'var(--text-muted)' }}>
+            {isAr ? 'لقطة سريعة لمراحل التلميع الاحترافي.' : 'A quick look at our professional polishing workflow.'}
+          </p>
+        </div>
+      </section>
 
       {/* ── SERVICES ──────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-page)' }}>

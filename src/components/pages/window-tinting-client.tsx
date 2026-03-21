@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
 import { MediaCarousel } from '@/components/ui/MediaCarousel'
+import { SplitMediaSection } from '@/components/ui/SplitMediaSection'
 
 // ─── CONTENT ─────────────────────────────────────────────────────────────────
 
@@ -445,23 +446,16 @@ export function WindowTintingClient() {
         </div>
       </section>
 
-      <section className="py-16 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs font-semibold tracking-[3px] uppercase mb-6" style={{ color: 'var(--text-muted)' }}>
-            {isAr ? 'صور التظليل' : 'Tinting Gallery'}
-          </p>
-          <MediaCarousel
-            items={[1, 2, 3, 4, 5, 6, 7, 8].map((i) => ({
-              src: `/images/tinting/tinting-${i}.jpg`,
-              alt: `3M window tinting UAE ${i}`,
-            }))}
-            aspectRatio="16/9"
-            autoPlay
-            intervalMs={2200}
-            showThumbnails
-          />
-        </div>
-      </section>
+      <SplitMediaSection
+        label={isAr ? 'معرض التظليل' : 'Tinting Gallery'}
+        title={isAr ? 'مشاهد تركيب\nواحترافية 3M' : 'REAL 3M INSTALLATION\nMOMENTS'}
+        description={isAr ? 'صور حقيقية من أعمالنا في دبي وأبوظبي، توضح جودة التشطيب والتظليل الاحترافي.' : 'Real installations across Dubai and Abu Dhabi, showing the premium finish you get with certified 3M application.'}
+        mediaItems={[1, 2, 3, 4, 5, 6, 7, 8].map((i) => ({
+          src: `/images/tinting/tinting-${i}.jpg`,
+          alt: `3M window tinting UAE ${i}`,
+        }))}
+        autoPlayMs={2100}
+      />
 
       {/* ── CRYSTALLINE HIGHLIGHTS ────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -505,18 +499,16 @@ export function WindowTintingClient() {
             ))}
           </div>
 
-          <div className="relative overflow-hidden" style={{ aspectRatio: '16/6' }}>
-            <Image
-              src="/images/tinting/tinting-before-after.jpg"
-              alt="3M window tinting before and after heat comparison"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.35)' }} />
-          </div>
         </div>
       </section>
+
+      <SplitMediaSection
+        label={isAr ? 'قبل / بعد' : 'Before / After'}
+        title={isAr ? 'الفرق واضح من\nأول نظرة' : 'SEE THE DIFFERENCE\nINSTANTLY'}
+        description={isAr ? 'نفس السيارة، نفس الزجاج، لكن مع فيلم 3M ستلاحظ انخفاض الحرارة والوهج بشكل واضح.' : 'Same car, same glass, but with 3M film you instantly notice cooler cabin feel and lower glare.'}
+        singleImage={{ src: '/images/tinting/tinting-before-after.jpg', alt: '3M window tinting before and after heat comparison' }}
+        reverse
+      />
 
       {/* ── COMPARISON TABLE ──────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -527,15 +519,24 @@ export function WindowTintingClient() {
           </h2>
           <p className="text-sm font-light mb-10" style={{ color: 'var(--text-muted)' }}>{c.comparison.subtitle}</p>
 
-          <div className="relative overflow-hidden mb-8" style={{ aspectRatio: '16/4' }}>
-            <Image
-              src="/images/tinting/tinting-shade-samples.jpg"
-              alt="3M window tint shade comparison samples"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.25)' }} />
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <div>
+              <h3 className="font-heading leading-none tracking-wide mb-3" style={{ fontSize: 'clamp(1.6rem,3vw,2.4rem)', color: 'var(--text-main)' }}>
+                {isAr ? 'درجات التظليل المتاحة' : 'AVAILABLE SHADE OPTIONS'}
+              </h3>
+              <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                {isAr ? 'اختر الدرجة التي تناسب أسلوبك، مع الحفاظ على التوافق القانوني الكامل في الإمارات.' : 'Choose the shade that matches your style while staying fully UAE-compliant.'}
+              </p>
+            </div>
+            <div className="relative overflow-hidden border" style={{ aspectRatio: '16/9', borderColor: 'var(--border)' }}>
+              <Image
+                src="/images/tinting/tinting-shade-samples.jpg"
+                alt="3M window tint shade comparison samples"
+                fill
+                className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+            </div>
           </div>
 
           {/* Table */}

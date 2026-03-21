@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
+import { SplitMediaSection } from '@/components/ui/SplitMediaSection'
 
 const content = {
   en: {
@@ -516,13 +517,16 @@ export function SunControlClient() {
         </div>
       </section>
 
-      {/* ── 2 IMAGE STRIP ─────────────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-4">
-          <CoverImg src="/images/residential/sun-control-2.jpg" alt="3M window film residential UAE" />
-          <CoverImg src="/images/residential/sun-control-3.jpg" alt="Sun control film villa Dubai" />
-        </div>
-      </section>
+      <SplitMediaSection
+        label={isAr ? 'معرض المشاريع' : 'Project Gallery'}
+        title={isAr ? 'تركيب فعلي في\nفلل ومنازل' : 'REAL INSTALLATIONS\nIN HOMES & VILLAS'}
+        description={isAr ? 'صور من مشاريع فعلية توضّح جودة تركيب أفلام التحكم الشمسي 3M.' : 'Real project visuals highlighting the quality of 3M sun control film installation.'}
+        mediaItems={[
+          { src: '/images/residential/sun-control-2.jpg', alt: '3M window film residential UAE' },
+          { src: '/images/residential/sun-control-3.jpg', alt: 'Sun control film villa Dubai' },
+        ]}
+        autoPlayMs={2200}
+      />
 
       {/* ── PROBLEMS ──────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -601,8 +605,9 @@ export function SunControlClient() {
               ))}
               <WAButton label={c.residential.cta} />
             </div>
-            {/* sun-control-4 */}
-            <CoverImg src="/images/residential/sun-control-4.jpg" alt="3M sun control film installed on villa window UAE" ratio="4/3" />
+            <div className="border" style={{ borderColor: 'var(--border)' }}>
+              <CoverImg src="/images/residential/sun-control-4.jpg" alt="3M sun control film installed on villa window UAE" ratio="16/9" />
+            </div>
           </div>
         </div>
       </section>
@@ -615,8 +620,6 @@ export function SunControlClient() {
             {c.commercial.title.split('\n').map((l, i) => <span key={i}>{l}{i === 0 && <br />}</span>)}
           </h2>
           <div className="grid lg:grid-cols-2 gap-8 items-start">
-            {/* sun-control-5 */}
-            <CoverImg src="/images/residential/sun-control-5.jpg" alt="Commercial window film office building Dubai" ratio="4/3" />
             <div className="space-y-4">
               {c.commercial.benefits.map(b => (
                 <div key={b.title} className="border p-6 flex gap-5 items-start" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
@@ -628,6 +631,9 @@ export function SunControlClient() {
                 </div>
               ))}
               <WAButton label={c.commercial.cta} />
+            </div>
+            <div className="border" style={{ borderColor: 'var(--border)' }}>
+              <CoverImg src="/images/residential/sun-control-5.jpg" alt="Commercial window film office building Dubai" ratio="16/9" />
             </div>
           </div>
         </div>
@@ -738,7 +744,9 @@ export function SunControlClient() {
               ))}
             </div>
           </div>
-          <CoverImg src="/images/residential/sun-control-6.jpg" alt="Energy saving window film UAE building" ratio="4/3" />
+          <div className="border" style={{ borderColor: 'var(--border)' }}>
+            <CoverImg src="/images/residential/sun-control-6.jpg" alt="Energy saving window film UAE building" ratio="16/9" />
+          </div>
         </div>
       </section>
 

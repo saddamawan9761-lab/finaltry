@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useApp } from '@/context/AppContext'
 import { COMPANY, MALL_LOCATIONS } from '@/lib/constants'
-import { MediaCarousel } from '@/components/ui/MediaCarousel'
+import { SplitMediaSection } from '@/components/ui/SplitMediaSection'
 
 const content = {
   en: {
@@ -498,25 +498,16 @@ export function PPFClient() {
         </div>
       </section>
 
-      {/* ── IMAGE GALLERY — first 6 images ───────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto">
-          <MediaCarousel
-            items={[1, 2, 3, 4, 5, 6].map((i) => ({
-              src: `/images/ppf/ppf-${i}.jpg`,
-              alt: i === 1
-                ? '3M PPF installation UAE luxury car'
-                : i === 2
-                  ? '3M Scotchgard PPF Dubai'
-                  : `3M PPF UAE ${i}`,
-            }))}
-            aspectRatio="16/9"
-            autoPlay
-            intervalMs={2400}
-            showThumbnails
-          />
-        </div>
-      </section>
+      <SplitMediaSection
+        label={isAr ? 'معرض PPF' : 'PPF Gallery'}
+        title={isAr ? 'نتائج تركيب\nاحترافية واضحة' : 'PREMIUM PPF\nINSTALLATION RESULTS'}
+        description={isAr ? 'صور حقيقية توضح جودة القص، الحواف النظيفة، والتشطيب النهائي في استوديوهاتنا.' : 'Real installation shots showing precise edge wrapping, clean finishing, and studio-grade application quality.'}
+        mediaItems={[1, 2, 3, 4, 5, 6].map((i) => ({
+          src: `/images/ppf/ppf-${i}.jpg`,
+          alt: i === 1 ? '3M PPF installation UAE luxury car' : i === 2 ? '3M Scotchgard PPF Dubai' : `3M PPF UAE ${i}`,
+        }))}
+        autoPlayMs={2300}
+      />
 
       {/* ── GLOSSY & MATTE FINISHES ───────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -566,20 +557,16 @@ export function PPFClient() {
         </div>
       </section>
 
-      {/* ── IMAGE GALLERY — images 7-10 ───────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-page)' }}>
-        <div className="max-w-7xl mx-auto">
-          <MediaCarousel
-            items={[7, 8, 9, 10].map((i) => ({
-              src: `/images/ppf/ppf-${i}.jpg`,
-              alt: `3M PPF UAE luxury car ${i}`,
-            }))}
-            aspectRatio="16/9"
-            autoPlay
-            intervalMs={2200}
-          />
-        </div>
-      </section>
+      <SplitMediaSection
+        title={isAr ? 'تفاصيل نهائية\nتُظهر الفرق' : 'DETAIL SHOTS THAT\nSHOW THE DIFFERENCE'}
+        description={isAr ? 'من المناطق عالية التلامس إلى الأجزاء الأمامية المعرضة للصدمات، تظهر هذه الصور دقة التطبيق.' : 'From high-impact front zones to high-touch panels, these images highlight precision and consistency in every install.'}
+        mediaItems={[7, 8, 9, 10].map((i) => ({
+          src: `/images/ppf/ppf-${i}.jpg`,
+          alt: `3M PPF UAE luxury car ${i}`,
+        }))}
+        autoPlayMs={2200}
+        reverse
+      />
 
       {/* ── WHY 3M PRO SERIES ─────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
@@ -705,20 +692,15 @@ export function PPFClient() {
         </div>
       </section>
 
-      {/* ── LAST 2 IMAGES ─────────────────────────────────────────────────── */}
-      <section className="py-4 px-6" style={{ background: 'var(--bg-mid)' }}>
-        <div className="max-w-7xl mx-auto">
-          <MediaCarousel
-            items={[
-              { src: '/images/ppf/ppf-12.jpg', alt: '3M PPF mall installation Dubai' },
-              { src: '/images/ppf/ppf-13.jpg', alt: '3M PPF luxury car UAE' },
-            ]}
-            aspectRatio="16/9"
-            autoPlay
-            intervalMs={2600}
-          />
-        </div>
-      </section>
+      <SplitMediaSection
+        title={isAr ? 'لقطات أخيرة من\nمشاريع حقيقية' : 'FINAL PROJECT\nSHOWCASE'}
+        description={isAr ? 'نماذج من تطبيقات PPF التي تم تنفيذها في مواقعنا داخل المراكز التجارية بدبي وأبوظبي.' : 'Final highlights from real PPF jobs completed at our mall-based studios in Dubai and Abu Dhabi.'}
+        mediaItems={[
+          { src: '/images/ppf/ppf-12.jpg', alt: '3M PPF mall installation Dubai' },
+          { src: '/images/ppf/ppf-13.jpg', alt: '3M PPF luxury car UAE' },
+        ]}
+        autoPlayMs={2600}
+      />
 
       {/* ── LOCATIONS ─────────────────────────────────────────────────────── */}
       <section className="py-24 px-6" style={{ background: 'var(--bg-page)' }}>
