@@ -8,6 +8,7 @@ export const t = {
     // Nav
     nav: {
       home: 'Home',
+      about: 'About Us',
       automotive: 'Automotive',
       residential: 'Residential & Commercial',
       marine: 'Marine',
@@ -196,6 +197,7 @@ export const t = {
       copyright: '3M OURCAR. Official 3M Authorized Dealer. All rights reserved.',
       quickLinks: [
         { label: 'Home', href: '/' },
+        { label: 'About Us', href: '/about' },
         { label: 'Automotive Services', href: '/automotive' },
         { label: 'Tint Simulator', href: '/simulator' },
         { label: 'Contact & Book', href: '/contact' },
@@ -227,6 +229,7 @@ export const t = {
   ar: {
     nav: {
       home: 'الرئيسية',
+      about: 'من نحن',
       automotive: 'خدمات السيارات',
       residential: 'السكني والتجاري',
       marine: 'البحري',
@@ -401,6 +404,7 @@ export const t = {
       copyright: '3M OURCAR. وكيل معتمد رسمي من 3M. جميع الحقوق محفوظة.',
       quickLinks: [
         { label: 'الرئيسية', href: '/' },
+        { label: 'من نحن', href: '/about' },
         { label: 'خدمات السيارات', href: '/automotive' },
         { label: 'محاكي التظليل', href: '/simulator' },
         { label: 'تواصل وحجز', href: '/contact' },

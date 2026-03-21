@@ -6,7 +6,7 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.3mourcar.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
-  const staticPages = ['', '/automotive', '/residential', '/marine', '/simulator', '/contact'].map((path) => ({
+  const staticPages = ['', '/about', '/automotive', '/residential', '/marine', '/simulator', '/contact'].map((path) => ({
     url: `${BASE}${path}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
