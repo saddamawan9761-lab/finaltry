@@ -8,7 +8,7 @@
  * marine-safety-9.jpg — on-site installation / port (optional hero for locations section)
  */
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useApp } from '@/context/AppContext'
@@ -55,14 +55,21 @@ function BulletList({ items }: { items: string[] }) {
   )
 }
 
+const crispHeading: CSSProperties = {
+  textShadow: 'none',
+  WebkitFontSmoothing: 'antialiased',
+}
+
 function SectionTitle({
   kicker,
   title,
   subtitle,
+  icon,
 }: {
   kicker?: string
   title: ReactNode
   subtitle?: ReactNode
+  icon?: string
 }) {
   return (
     <div className="max-w-3xl">
@@ -71,11 +78,19 @@ function SectionTitle({
           {kicker}
         </p>
       )}
-      <h2 className="font-heading leading-none tracking-wide mb-3" style={{ fontSize: 'clamp(2rem,4vw,3.2rem)', color: 'var(--text-main)' }}>
-        {title}
+      <h2
+        className="font-heading leading-none tracking-wide mb-3 flex items-start gap-3"
+        style={{ fontSize: 'clamp(2rem,4vw,3.2rem)', color: 'var(--text-main)', ...crispHeading }}
+      >
+        {icon && (
+          <span className="flex-shrink-0 text-[0.85em] leading-none pt-1" aria-hidden>
+            {icon}
+          </span>
+        )}
+        <span>{title}</span>
       </h2>
       {subtitle && (
-        <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+        <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted)', ...crispHeading }}>
           {subtitle}
         </p>
       )}
@@ -166,12 +181,12 @@ export function MarineSafetySecurityClient() {
         essentialLead: 'مناخ الإمارات والظروف البحرية يجعلان تركيب فيلم الأمان البحرية ضرورة وليس رفاهية.',
         essentialAdvantages: 'مزايا رئيسية',
         essentialItems: [
-          'زيادة الأمان أثناء العواصف أو البحار الهائجة أو الصدمات العرضية',
-          'يؤخر الدخول القسري ويعزز الحماية ضد القرصنة',
-          'يقلل الحمل الحراري واستهلاك التكييف',
-          'يحمي المقصورات من بهتان الأشعة فوق البنفسجية',
-          'يعزز الخصوصية في المناطق التشغيلية الحساسة',
-          'يطيل عمر الزجاج البحري',
+          { icon: '🌊', text: 'زيادة الأمان أثناء العواصف أو البحار الهائجة أو الصدمات العرضية' },
+          { icon: '🔒', text: 'يؤخر الدخول القسري ويعزز الحماية ضد القرصنة' },
+          { icon: '❄️', text: 'يقلل الحمل الحراري واستهلاك التكييف' },
+          { icon: '☀️', text: 'يحمي المقصورات من بهتان الأشعة فوق البنفسجية' },
+          { icon: '🔐', text: 'يعزز الخصوصية في المناطق التشغيلية الحساسة' },
+          { icon: '🪟', text: 'يطيل عمر الزجاج البحري' },
         ],
         onsiteKicker: 'التركيب',
         onsiteTitle: 'تركيب أفلام بحرية في الموقع عبر دبي وأبوظبي',
@@ -200,22 +215,27 @@ export function MarineSafetySecurityClient() {
         faqTitle: 'الأسئلة الشائعة',
         faq: [
           {
+            icon: '👁️',
             q: 'هل يؤثر فيلم الأمان البحري على الرؤية؟',
             a: 'لا. الأفلام الشفافة تحافظ على الوضوح البصري الكامل، مما يجعلها مثالية لنوافذ الجسر.',
           },
           {
+            icon: '🔒',
             q: 'هل يمكن للفيلم الحماية من الدخول القسري أو محاولات القرصنة؟',
             a: 'نعم. لا يجعل الفيلم الزجاج غير قابل للكسر، لكن أفلامنا البحرية تؤخر الدخول القسري بشكل كبير وتمنع التحطم.',
           },
           {
+            icon: '🌡️',
             q: 'هل يقلل الفيلم الحرارة داخل السفينة؟',
             a: 'نعم. الأفلام الشمسية توفر تقليلًا قويًا للأشعة فوق البنفسجية والحرارة وتحسّن الراحة وتقلل استخدام التكييف.',
           },
           {
+            icon: '🧭',
             q: 'هل يناسب فيلم الجسر؟',
             a: 'بالتأكيد. الفيلم الشفاف المضاد للتحطم مثالي لمناطق الملاحة التي تتطلب رؤية كاملة.',
           },
           {
+            icon: '⏱️',
             q: 'كم يستغرق التركيب؟',
             a: 'يمكن إنجاز معظم السفن خلال بضع ساعات، حسب الحجم وعدد النوافذ.',
           },
@@ -293,12 +313,12 @@ export function MarineSafetySecurityClient() {
           'The UAE’s climate and maritime conditions make marine security film installation a necessity—not a luxury.',
         essentialAdvantages: 'Key Advantages',
         essentialItems: [
-          'Increased safety during storms, rough seas, or accidental impact',
-          'Delays forced entry and enhances anti-piracy glass protection',
-          'Reduces heat load and AC consumption',
-          'Protects interiors from UV fading',
-          'Enhances privacy for sensitive operational areas',
-          'Extends the lifespan of marine glass',
+          { icon: '🌊', text: 'Increased safety during storms, rough seas, or accidental impact' },
+          { icon: '🔒', text: 'Delays forced entry and enhances anti-piracy glass protection' },
+          { icon: '❄️', text: 'Reduces heat load and AC consumption' },
+          { icon: '☀️', text: 'Protects interiors from UV fading' },
+          { icon: '🔐', text: 'Enhances privacy for sensitive operational areas' },
+          { icon: '🪟', text: 'Extends the lifespan of marine glass' },
         ],
         onsiteKicker: 'Installation',
         onsiteTitle: 'On-Site Marine Film Installation Across Dubai & Abu Dhabi',
@@ -327,22 +347,27 @@ export function MarineSafetySecurityClient() {
         faqTitle: 'Frequently Asked Questions',
         faq: [
           {
+            icon: '👁️',
             q: 'Does marine safety film affect visibility?',
             a: 'No. Our clear films maintain full optical clarity, making them ideal for ship bridge window film applications.',
           },
           {
+            icon: '🔒',
             q: 'Can safety film protect against forced entry or piracy attempts?',
             a: 'Yes. While no film makes glass unbreakable, our marine-grade films significantly delay forced entry and prevent shattering.',
           },
           {
+            icon: '🌡️',
             q: 'Does the film reduce heat inside the vessel?',
             a: 'Yes. Solar films provide powerful UV and heat reduction for vessels, improving comfort and reducing AC usage.',
           },
           {
+            icon: '🧭',
             q: 'Is the film suitable for bridge windows?',
             a: 'Absolutely. Clear anti-shatter film is perfect for navigation areas requiring full visibility.',
           },
           {
+            icon: '⏱️',
             q: 'How long does installation take?',
             a: 'Most vessels can be completed within a few hours, depending on size and number of windows.',
           },
@@ -408,18 +433,33 @@ export function MarineSafetySecurityClient() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <h1
-                className="font-heading leading-none tracking-wide mb-4 on-dark-title"
-                style={{ fontSize: 'clamp(2.2rem,5vw,4.2rem)' }}
+                className="font-heading leading-none tracking-wide mb-4"
+                style={{
+                  fontSize: 'clamp(2.2rem,5vw,4.2rem)',
+                  color: '#ffffff',
+                  textShadow: 'none',
+                  WebkitFontSmoothing: 'antialiased',
+                }}
               >
                 {t.heroTitle}
               </h1>
-              <p className="text-sm font-semibold tracking-wide mb-6 on-dark-muted">{t.heroSubtitle}</p>
+              <p
+                className="text-sm font-semibold tracking-wide mb-6"
+                style={{ color: 'rgba(255,255,255,0.95)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+              >
+                {t.heroSubtitle}
+              </p>
 
               <div className="lg:hidden mb-8">
                 <AutoSlider slides={heroSlides} />
               </div>
 
-              <p className="text-sm font-light leading-relaxed mb-6 on-dark-soft">{t.heroLead}</p>
+              <p
+                className="text-sm font-light leading-relaxed mb-6"
+                style={{ color: 'rgba(255,255,255,0.9)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+              >
+                {t.heroLead}
+              </p>
 
               <div className="border p-7" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
                 <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
@@ -472,7 +512,7 @@ export function MarineSafetySecurityClient() {
             </div>
           </div>
           <div>
-            <SectionTitle title={t.trustTitle} />
+            <SectionTitle title={t.trustTitle} icon="⛵" />
             <p className="text-sm font-light leading-relaxed mt-6" style={{ color: 'var(--text-muted)' }}>
               {t.trustLead}
             </p>
@@ -498,11 +538,15 @@ export function MarineSafetySecurityClient() {
 
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
         <div className="max-w-7xl mx-auto">
-          <SectionTitle kicker={t.solutionsKicker} title={t.solutionsTitle} subtitle={t.solutionsSubtitle} />
+          <SectionTitle kicker={t.solutionsKicker} title={t.solutionsTitle} subtitle={t.solutionsSubtitle} icon="🛡️" />
 
           <div className="grid lg:grid-cols-2 gap-8 mt-10 items-start">
             <div className="border p-8" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-              <h3 className="font-heading text-2xl tracking-wide mb-4" style={{ color: 'var(--text-main)' }}>
+              <h3
+                className="font-condensed text-2xl font-bold tracking-wide mb-4 flex items-center gap-2"
+                style={{ color: 'var(--text-main)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+              >
+                <span aria-hidden>🪟</span>
                 {t.clearTitle}
               </h3>
               <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
@@ -537,7 +581,11 @@ export function MarineSafetySecurityClient() {
               <AutoSlider slides={comparisonSlides} />
             </div>
             <div className="border p-8 order-1 lg:order-2" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-              <h3 className="font-heading text-2xl tracking-wide mb-4" style={{ color: 'var(--text-main)' }}>
+              <h3
+                className="font-condensed text-2xl font-bold tracking-wide mb-4 flex items-center gap-2"
+                style={{ color: 'var(--text-main)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+              >
+                <span aria-hidden>☀️</span>
                 {t.solarTitle}
               </h3>
               <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
@@ -567,15 +615,21 @@ export function MarineSafetySecurityClient() {
 
       <section className="py-24 px-6" style={{ background: 'var(--bg-page)' }}>
         <div className="max-w-7xl mx-auto">
-          <SectionTitle kicker={t.essentialKicker} title={t.essentialTitle} subtitle={t.essentialLead} />
+          <SectionTitle kicker={t.essentialKicker} title={t.essentialTitle} subtitle={t.essentialLead} icon="⚓" />
           <p className="text-xs font-semibold tracking-widest uppercase mt-10 mb-4" style={{ color: 'var(--red)' }}>
             {t.essentialAdvantages}
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {t.essentialItems.map((item) => (
-              <div key={item} className="border p-6" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-                <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                  {item}
+              <div key={item.text} className="border p-6 flex gap-3" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+                <span className="flex-shrink-0 text-xl leading-none pt-0.5" aria-hidden>
+                  {item.icon}
+                </span>
+                <p
+                  className="text-sm font-light leading-relaxed"
+                  style={{ color: 'var(--text-muted)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+                >
+                  {item.text}
                 </p>
               </div>
             ))}
@@ -586,16 +640,24 @@ export function MarineSafetySecurityClient() {
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
           <div>
-            <SectionTitle kicker={t.onsiteKicker} title={t.onsiteTitle} subtitle={t.onsiteLead} />
+            <SectionTitle kicker={t.onsiteKicker} title={t.onsiteTitle} subtitle={t.onsiteLead} icon="📍" />
             <div className="mt-8 grid gap-5">
               <div className="border p-7" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-                <h3 className="font-condensed text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--text-main)' }}>
+                <h3
+                  className="font-condensed text-sm font-semibold tracking-widest uppercase mb-3 flex items-center gap-2"
+                  style={{ color: 'var(--text-main)', textShadow: 'none' }}
+                >
+                  <span aria-hidden>🏙️</span>
                   {t.dubaiLocs}
                 </h3>
                 <BulletList items={t.dubaiList} />
               </div>
               <div className="border p-7" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-                <h3 className="font-condensed text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: 'var(--text-main)' }}>
+                <h3
+                  className="font-condensed text-sm font-semibold tracking-widest uppercase mb-3 flex items-center gap-2"
+                  style={{ color: 'var(--text-main)', textShadow: 'none' }}
+                >
+                  <span aria-hidden>🌴</span>
                   {t.adLocs}
                 </h3>
                 <BulletList items={t.adList} />
@@ -643,16 +705,41 @@ export function MarineSafetySecurityClient() {
 
       <section className="py-24 px-6" style={{ background: 'var(--bg-mid)' }}>
         <div className="max-w-7xl mx-auto">
-          <SectionTitle title={t.faqTitle} />
+          <SectionTitle title={t.faqTitle} icon="❓" />
           <div className="grid lg:grid-cols-2 gap-4 mt-10">
             {t.faq.map((f) => (
-              <div key={f.q} className="border p-7" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
-                <h3 className="text-sm font-semibold mb-2" style={{ color: 'var(--text-main)' }}>
-                  {f.q}
-                </h3>
-                <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                  {f.a}
-                </p>
+              <div
+                key={f.q}
+                className="border p-7 flex gap-4"
+                style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
+              >
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded flex items-center justify-center text-xl border"
+                  style={{ borderColor: 'var(--red)', background: 'var(--bg-page)' }}
+                  aria-hidden
+                >
+                  {f.icon}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p
+                    className={`text-base font-semibold leading-snug mb-2 ${isAr ? '' : 'font-condensed'}`}
+                    style={{
+                      fontFamily: isAr ? 'var(--font-arabic), sans-serif' : 'var(--font-barlow-condensed), sans-serif',
+                      letterSpacing: isAr ? 0 : '0.02em',
+                      color: 'var(--text-main)',
+                      textShadow: 'none',
+                      WebkitFontSmoothing: 'antialiased',
+                    }}
+                  >
+                    {f.q}
+                  </p>
+                  <p
+                    className="text-sm font-light leading-relaxed"
+                    style={{ color: 'var(--text-muted)', textShadow: 'none', WebkitFontSmoothing: 'antialiased' }}
+                  >
+                    {f.a}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
