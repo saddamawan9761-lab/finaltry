@@ -21,9 +21,10 @@ interface EmailData {
 }
 
 export async function sendEmail({ to, subject, html }: EmailData): Promise<boolean> {
-  const recipient = to || process.env.NOTIFY_EMAIL || ''
+  // NOTIFY_EMAIL = inbox for leads; if omitted, fall back to SMTP_USER (same Gmail for send + receive)
+  const recipient = to || process.env.NOTIFY_EMAIL || process.env.SMTP_USER || ''
   if (!recipient) {
-    console.warn('[3mourcar email] NOTIFY_EMAIL is not set — skipping send')
+    console.warn('[3mourcar email] Set NOTIFY_EMAIL or SMTP_USER on Vercel — skipping send')
     return false
   }
 
