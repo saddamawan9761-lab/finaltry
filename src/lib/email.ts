@@ -17,23 +17,33 @@ interface EmailData {
   html: string
 }
 
-export async function sendEmail({ to, subject, html }: EmailData) {
+export async function sendEmail({ to, subject, html }: EmailData): Promise<boolean> {
   const recipient = to || process.env.NOTIFY_EMAIL || ''
   if (!recipient) {
-    console.warn('No email recipient configured — skipping email send')
-    return
+    console.warn('[3mourcar email] NOTIFY_EMAIL is not set — skipping send')
+    return false
+  }
+
+  const { SMTP_HOST, SMTP_USER, SMTP_PASS } = process.env
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    console.warn(
+      '[3mourcar email] Missing SMTP_HOST, SMTP_USER, or SMTP_PASS — add them in Vercel → Settings → Environment Variables (then Redeploy)'
+    )
+    return false
   }
 
   try {
     await transporter.sendMail({
-      from: `"3M OURCAR Website" <${process.env.SMTP_USER}>`,
+      from: `"3M OURCAR Website" <${SMTP_USER}>`,
       to: recipient,
       subject,
       html,
     })
+    return true
   } catch (err) {
-    console.error('Email send failed:', err)
+    console.error('[3mourcar email] sendMail failed:', err)
     // Don't throw — email failure should not break form submission
+    return false
   }
 }
 
