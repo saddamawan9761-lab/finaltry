@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AUTOMOTIVE_SERVICES } from '@/lib/constants'
+import { WindowTintingClient } from '@/components/pages/window-tinting-client'
+import { PPFClient } from '@/components/pages/ppf-client'
+import { CeramicCoatingClient } from '@/components/pages/ceramic-coating-client'
+import { CarPolishingClient } from '@/components/pages/car-polishing-client'
+import { CarDetailingClient } from '@/components/pages/car-detailing-client'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -23,6 +28,15 @@ export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params
   const service = AUTOMOTIVE_SERVICES.find((s) => s.slug === slug)
   if (!service) notFound()
+
+  // Hardening: if the dedicated route isn't being served for some reason,
+  // render the real client component directly so users never see placeholders.
+  if (service.slug === 'window-tinting') return <WindowTintingClient />
+  if (service.slug === 'ppf') return <PPFClient />
+  if (service.slug === 'ceramic-coating') return <CeramicCoatingClient />
+  if (service.slug === 'car-polishing') return <CarPolishingClient />
+  if (service.slug === 'car-detailing') return <CarDetailingClient />
+
   const related = AUTOMOTIVE_SERVICES.filter((s) => s.slug !== slug).slice(0, 3)
 
   return (
